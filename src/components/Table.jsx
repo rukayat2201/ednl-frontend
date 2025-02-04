@@ -66,17 +66,25 @@ function Table({ showTableModal }) {
               <td className="px-4 py-4">
                 <span
                   className={`bg-${
-                    cust.status === "active" ? "green" : "gray"
+                    cust.status === "active"
+                      ? "green"
+                      : cust.status === "dormant"
+                      ? "yellow"
+                      : "gray"
                   }-200 px-2 py-1 rounded-full flex items-center justify-center`}
                 >
-                  {cust.status === "active" ? "Active" : "Inactive"}
+                  {cust.status === "active"
+                    ? "Active"
+                    : cust.status === "dormant"
+                    ? "Dormant"
+                    : "Inactive"}
                 </span>
               </td>
               <td className="px-4 py-4">
                 {new Date(cust.created_at).toLocaleDateString()}
               </td>
               <td
-                onClick={() => showTableModal(cust)} 
+                onClick={() => showTableModal(cust)}
                 className="px-4 py-4 cursor-pointer"
               >
                 <MdMoreVert />
